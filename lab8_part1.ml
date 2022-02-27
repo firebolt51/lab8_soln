@@ -323,9 +323,10 @@ module MakeBestInterval (Endpoint : ORDERED_TYPE)
                           Everything else stays the same. *)
   struct
     type endpoint = Endpoint.t
-    type interval = | Interval of endpoint * endpoint
+    type interval =
                     | Empty
-
+                    | Interval of endpoint * endpoint
+    let compare = Endpoint.compare
     (* create low high -- Returns a new interval covering `low` to
        `high` inclusive. If `low` > `high`, then the interval is
        empty. *)
